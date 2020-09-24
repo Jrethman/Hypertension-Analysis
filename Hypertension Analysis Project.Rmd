@@ -1,0 +1,52 @@
+---
+title: "The Effect of BMI and Age on the Risk for Hypertension"
+author: "Jake Rethman"
+date: "9/22/2020"
+output: html_document
+---
+
+
+## Introduction
+
+  As the field of medicine continues to grow, it becomes imperative for scientists to find links between diseases and variables that make people more susceptible to them. When doctors know if someone is prone to developing an illness, better care can be provided and preventative treatments can potentially be used to decrease their effects. This report aims to find links between hypertension and other variables, specifically BMI and age. If done correctly, the data that has been gathered can be used to identify what parts of the population are prone to developing hypertension. 
+ 
+  Hypertension, or high blood pressure, is a long term health condition in which the blood pressure found within the arteries is too high. A person is diagnosed with hypertension if their systolic number is at least 130 mmHg or if their diastolic number is 80 mmHg or higher. Additionally, BMI (Body Mass Index) is used as a measure of body fat using a relationship between a person's height and weight. 
+
+```{r,echo=FALSE}
+
+
+jake <- read.csv("jake-dataset.csv")
+summary(jake)
+
+hist(jake$systolic, main = "Histogram of Systolic BP", xlab = "Systolic BP")
+hist(jake$diastolic, main = "Histogram of Diastolic BP", xlab = "Diastolic BP")
+```
+
+The table provides a brief summary of some of the statistical values for each variable individually. The important variables to observe are the Systolic/Diastolic BP, BMI, and age values. 
+
+The two histograms provide an important insight into the distribution of both BP values. The Diastolic BP data follows a symmetric, unimodal distribution. The Systolic BP data is slightly less symmetric and appears to have one large mode. This distribution pattern makes descriptive statistics like mean and standard deviation more accurate than the median and IQR values. The mean for systolic BP is 150.2 mmHg and the mean for the diastolic BP is 84.78 mmHg. This indicates that at least half of the sample suffers from high blood pressure.
+
+```{r, echo=FALSE}
+plot(jake$bmi,jake$systolic, main = "Realationship Between BMI and Systolic BP", xlab = "BMI", ylab = "Systolic BP (mmHg)")
+abline(lm(jake$systolic ~ jake$bmi), col = "red")
+
+plot(jake$bmi,jake$diastolic, main = "Realationship Between BMI and Diastolic BP", xlab = "BMI", ylab = "Diastolic BP (mmHg)")
+abline(lm(jake$diastolic ~ jake$bmi), col = "blue")
+  
+plot(jake$age,jake$systolic, main = "Realationship Between Age and Systolic BP", xlab = "Age", ylab = "Systolic BP (mmHg)")
+abline(lm(jake$systolic ~ jake$age), col = "red")
+
+plot(jake$age,jake$diastolic, main = "Realationship Between Age and Diastolic BP", xlab = "Age", ylab = "Diastolic BP (mmHg)")
+abline(lm(jake$diastolic ~ jake$age), col = "blue")
+```
+
+The first two graphs display the relationship between Systolic/Diastolic BP and BMI. There appears to be a weak, positive correlation between the two variables. 
+
+The last two graphs display the relationship between Systolic/Diastolic BP and age. There appears to be a moderate, positive correlation. This positive relationship is more pronounced when age is compared with systolic BP. 
+
+## Conclusion
+
+Often times, diseases like hypertension cannot be linked with a single variable. It usually consists of a culmination of a variety of factors. This report attempts to find the relationship between two variables: BMI and age. Age appeared to have a stronger correlation to an elevated systolic and diastolic blood pressure. The correlation between BMI and high blood pressure was not as strong. Since BMI does not take into consideration muscle mass, a high BMI does not always equal a high body fat percentage. A more accurate way to measure body fat percentage would produce more accurate results. However, a higher BMI and an older age appear to be connected to an increase risk of higher blood pressure, and therefore, hypertension.  
+
+
+
